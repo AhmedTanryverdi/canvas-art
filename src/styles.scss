@@ -7,16 +7,30 @@
 body {
 	height: 100vh;
 	background-color: rgb(37, 37, 100);
-	position: relative;
 	font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
 		"Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-	font-size: 24px;
-	h1 {
-		width: 100%;
-		position: absolute;
-		top: 50%;
-		transform: translateY(-50%);
-		text-align: center;
-		color: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#app {
+	width: 80%;
+	height: 80%;
+	background-color: #fff;
+	box-shadow: 1px 1px 55px 3px black;
+	display: flex;
+
+	#left-tools-bar,
+	#right-tools-bar {
+		flex: 1 1 auto;
+		height: 100%;
+		background-color: darkcyan;
+	}
+
+	#canvas {
+		flex: 1 1 auto;
+		width: 70%;
+		height: 100%;
 	}
 }
