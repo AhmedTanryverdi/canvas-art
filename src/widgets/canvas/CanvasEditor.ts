@@ -3,16 +3,12 @@ export class CanvasEditor {
 	ctx: any;
 	editor: string;
 	isDrawing: boolean;
-	lastX: number | undefined;
-	lastY: number | undefined;
 
 	constructor(canvas: any) {
 		this.canvas = canvas;
 		this.ctx = canvas.getContext("2d");
 		this.editor = "pen";
 		this.isDrawing = false;
-		this.lastX = undefined;
-		this.lastY = undefined;
 
 		this.ctx.lineCap = "round";
 		this.ctx.lineJoin = "round";
