@@ -1,3 +1,4 @@
+import "./styles.scss";
 import UIComponent from "@/shared/components/ui-component";
 import { ToolsBlock } from "@/shared/components/tools-block";
 
