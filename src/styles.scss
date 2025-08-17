@@ -28,6 +28,13 @@ body {
 		background-color: darkcyan;
 	}
 
+	#left-tools-bar{
+		.tool-icon{
+			width: 24px;
+			height: 24px;
+		}
+	}
+
 	#canvas {
 		flex: 1 1 auto;
 		width: 70%;

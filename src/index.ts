@@ -1,9 +1,9 @@
 "use strict";
 
 import "./styles.scss";
-import Canvas from "./widgets/canvas";
-import LeftToolsBar from "./widgets/left-tools-bar";
-import RightToolsBar from "./widgets/right-tools-bar";
+import { Canvas } from "./widgets";
+import { LeftToolsBar } from "./widgets";
+import { RightToolsBar } from "./widgets";
 
 document.addEventListener("DOMContentLoaded", function () {
 	const canvas = new Canvas("canvas");
