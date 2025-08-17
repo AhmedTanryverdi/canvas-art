@@ -26,7 +26,10 @@ export class ToolsBlock extends UIComponent {
 					img.src = textSvg;
 			}
 			img.alt = element;
-			this.container.append(img);
+			const rame = document.createElement("div");
+			rame.classList.add("rame");
+			rame.append(img);
+			this.container.append(rame);
 		});
 	}
 }
