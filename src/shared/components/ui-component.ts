@@ -5,9 +5,9 @@ export default abstract class UIComponent {
 		this.container.id = id;
 	}
 
-	render(element: string = "#app") {
-		const block = document.querySelector(element);
-		block?.append(this.container);
+	render(parent: string = "#app") {
+		const parentElement = document.querySelector(parent);
+		parentElement?.append(this.container);
 	}
 
 	getElement() {

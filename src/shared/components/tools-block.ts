@@ -2,9 +2,8 @@ import UIComponent from "./ui-component";
 import eraserSvg from "@/shared/icons/eraser.svg";
 import penSvg from "@/shared/icons/pen.svg";
 import textSvg from "@/shared/icons/text.svg";
-import SingleEditor from "../lib/SingleEditor";
-
-const TOOLITEMS = ["eraser", "pen", "text"];
+import SingleEditor from "../utils/lib/SingleEditor";
+import { TOOLITEMS } from "../utils/constants";
 
 export class ToolsBlock extends UIComponent {
 	constructor(id: string, blockType: string = "div") {
@@ -19,7 +18,7 @@ export class ToolsBlock extends UIComponent {
 				const editor = SingleEditor.getInstance();
 				editor.setCurrentTool(element);
 			});
-			
+
 			img.classList.add("tool-icon");
 			switch (element) {
 				case "eraser":

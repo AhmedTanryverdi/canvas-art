@@ -1,5 +1,6 @@
 import UIComponent from "@/shared/components/ui-component";
 import { CanvasEditor } from "./CanvasEditor";
+import { CanvasSize } from "@/shared/utils/constants";
 
 export class Canvas extends UIComponent {
 	drawer: CanvasEditor;
@@ -8,8 +9,8 @@ export class Canvas extends UIComponent {
 
 		if (this.container instanceof HTMLCanvasElement) {
 			this.container.tabIndex = 0;
-			this.container.width = 1000;
-			this.container.height = window.innerHeight * 0.8;
+			this.container.width = CanvasSize.CANVAS_WIDTH;
+			this.container.height = CanvasSize.CANVAS_HEIGHT;
 			this.drawer = new CanvasEditor(this.container);
 			this.container.focus();
 			this.addContent();
@@ -21,10 +22,12 @@ export class Canvas extends UIComponent {
 			"mousedown",
 			this.drawer.startDraw.bind(this.drawer)
 		);
+
 		this.container.addEventListener(
 			"mouseup",
 			this.drawer.stopDraw.bind(this.drawer)
 		);
+
 		this.container.addEventListener(
 			"mousemove",
 			this.drawer.drawLine.bind(this.drawer)
