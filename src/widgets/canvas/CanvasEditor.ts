@@ -1,8 +1,8 @@
+import SingleEditor from "@/shared/utils/lib/SingleEditor";
 import { PenEditor } from "@/feature/canvas-tools";
 import { EraserEditor } from "@/feature/canvas-tools/left-panel/tools/eraser-editor";
 import { TextEditor } from "@/feature/canvas-tools/left-panel/tools/text-editor";
 import { IToolsDraw, IToolsStart, IToolsStop } from "@/shared/utils/types";
-import SingleEditor from "@/shared/utils/lib/SingleEditor";
 
 export class CanvasEditor {
 	private __canvas: HTMLCanvasElement;
@@ -23,19 +23,24 @@ export class CanvasEditor {
 		if (!(this.__currentTool && "startDraw" in this.__currentTool)) return;
 
 		this.__isDrawing = true;
-		const currentToolName = SingleEditor.getInstance().getCurrentTool();
+		const editor = SingleEditor.getInstance();
+		const currentToolName = editor.getCurrentTool();
+
 		let tool: any;
 
 		switch (currentToolName) {
 			case "pen":
 				tool = new PenEditor(this.__ctx);
+				tool.setThickness(editor.getThicknessTool());
 				this.__currentTool?.startDraw(e);
 				break;
 			case "eraser":
 				tool = new EraserEditor(this.__ctx);
+				tool.setThickness(editor.getThicknessTool());
 				break;
 			case "text":
 				tool = new TextEditor(this.__ctx);
+				tool.setThickness(editor.getThicknessTool());
 				tool.setPosition(e.offsetX, e.offsetY);
 				break;
 			default:
