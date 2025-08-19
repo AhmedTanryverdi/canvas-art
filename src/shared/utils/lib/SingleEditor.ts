@@ -1,6 +1,7 @@
 export default class SingleEditor {
 	private static __instance: SingleEditor | null = null;
 	private __currentTool: string = "pen";
+	private __thicknessTool: string = "5";
 	private constructor() {}
 
 	public static getInstance(): SingleEditor {
@@ -16,5 +17,13 @@ export default class SingleEditor {
 
 	public getCurrentTool(): string {
 		return this.__currentTool;
+	}
+
+	public setThicknessTool(value: string) {
+		this.__thicknessTool = value;
+	}
+
+	getThicknessTool() {
+		return this.__thicknessTool;
 	}
 }
