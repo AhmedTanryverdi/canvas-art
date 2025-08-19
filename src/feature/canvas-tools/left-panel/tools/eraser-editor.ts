@@ -9,6 +9,11 @@ export class EraserEditor implements IToolsStart, IToolsDraw {
 		this.__eraserThickness = ERASER_THICKNESS_DEFAULT;
 	}
 
+	setThickness(value: string) {
+		this.__eraserThickness = parseInt(value);
+		this.__ctx.lineWidth = this.__eraserThickness;
+	}
+
 	startDraw(e: MouseEvent) {
 		this.draw(e);
 	}
@@ -17,8 +22,7 @@ export class EraserEditor implements IToolsStart, IToolsDraw {
 		if (!this.__ctx) return;
 
 		this.__ctx.globalCompositeOperation = "destination-out";
-
-		this.__ctx.beginPath();
+		
 		this.__ctx.arc(
 			e.offsetX,
 			e.offsetY,

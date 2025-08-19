@@ -9,9 +9,15 @@ export class TextEditor implements IToolsDraw, IToolsStart {
 
 	constructor(ctx: CanvasRenderingContext2D) {
 		this.__ctx = ctx;
+		this.__ctx.textBaseline = CanvasInputSettings.BASELINE;
 		this.__textContent = "";
 		this.__xPosition = 0;
 		this.__yPosition = 0;
+	}
+
+	setThickness(value: string) {
+		let fontSize = parseInt(value) * 2.5;
+		this.__ctx.font = `${fontSize}px Arial`;
 	}
 
 	setPosition(x: number, y: number) {
@@ -59,8 +65,10 @@ export class TextEditor implements IToolsDraw, IToolsStart {
 		}
 
 		// Прорисовываем текст на холсте
-		this.__ctx.font = CanvasInputSettings.FONT;
-		this.__ctx.textBaseline = CanvasInputSettings.BASELINE;
-		this.__ctx.fillText(this.__textContent, this.__xPosition, this.__yPosition);
+		this.__ctx.fillText(
+			this.__textContent,
+			this.__xPosition,
+			this.__yPosition
+		);
 	}
 }
