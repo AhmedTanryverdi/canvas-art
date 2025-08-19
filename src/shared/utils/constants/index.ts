@@ -15,6 +15,13 @@ export enum CanvasPenSettings {
 	LINE_JOIN = "round",
 }
 
+export enum ThicknessToolSettings {
+	TYPE = "range",
+	MIN = "1",
+	MAX = "30",
+	VALUE = "5",
+}
+
 export const ERASER_THICKNESS_DEFAULT = 20;
 
 export const TOOLITEMS = ["eraser", "pen", "text"];
