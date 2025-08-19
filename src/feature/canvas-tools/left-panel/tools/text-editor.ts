@@ -2,20 +2,20 @@ import { CanvasInputSettings } from "@/shared/utils/constants";
 import { IToolsDraw, IToolsStart } from "@/shared/utils/types";
 
 export class TextEditor implements IToolsDraw, IToolsStart {
-	ctx: CanvasRenderingContext2D;
-	textContent: string;
-	xPosition: number;
-	yPosition: number;
+	private __ctx: CanvasRenderingContext2D;
+	private __textContent: string;
+	private __xPosition: number;
+	private __yPosition: number;
 
 	constructor(ctx: CanvasRenderingContext2D) {
-		this.ctx = ctx;
-		this.textContent = "";
-		this.xPosition = 0;
-		this.yPosition = 0;
+		this.__ctx = ctx;
+		this.__textContent = "";
+		this.__xPosition = 0;
+		this.__yPosition = 0;
 	}
 
 	setPosition(x: number, y: number) {
-		[this.xPosition, this.yPosition] = [x, y];
+		[this.__xPosition, this.__yPosition] = [x, y];
 	}
 
 	startDraw(e: MouseEvent): void {
@@ -23,44 +23,44 @@ export class TextEditor implements IToolsDraw, IToolsStart {
 	}
 
 	draw(event: KeyboardEvent): void {
-		if (!this.ctx || !event.key) return;
+		if (!this.__ctx || !event.key) return;
 		event.preventDefault();
 
-		const lastCharIndex = this.textContent.length - 1;
+		const lastCharIndex = this.__textContent.length - 1;
 		if (event.key === "Backspace") {
 			if (lastCharIndex >= 0) {
 				// Измеряем ширину последнего символа
-				const metrics = this.ctx.measureText(
-					this.textContent[lastCharIndex]
+				const metrics = this.__ctx.measureText(
+					this.__textContent[lastCharIndex]
 				);
 
 				// Определяем позицию начала символа относительно общей позиции строки
 				const xPosOfLastSymbol =
-					this.xPosition +
-					this.ctx.measureText(
-						this.textContent.substring(0, lastCharIndex)
+					this.__xPosition +
+					this.__ctx.measureText(
+						this.__textContent.substring(0, lastCharIndex)
 					).width;
 
-				this.textContent = this.textContent.slice(0, -1);
+				this.__textContent = this.__textContent.slice(0, -1);
 
 				// Чистка места последнего символа
-				this.ctx.clearRect(
+				this.__ctx.clearRect(
 					xPosOfLastSymbol,
-					this.yPosition,
+					this.__yPosition,
 					metrics.width,
 					40
 				);
 			}
 		} else if (event.key.length === 1) {
-			this.textContent += event.key;
+			this.__textContent += event.key;
 		} else if (event.key === "Enter") {
-			this.yPosition += 40;
-			this.textContent = "";
+			this.__yPosition += 40;
+			this.__textContent = "";
 		}
 
 		// Прорисовываем текст на холсте
-		this.ctx.font = CanvasInputSettings.FONT;
-		this.ctx.textBaseline = CanvasInputSettings.BASELINE;
-		this.ctx.fillText(this.textContent, this.xPosition, this.yPosition);
+		this.__ctx.font = CanvasInputSettings.FONT;
+		this.__ctx.textBaseline = CanvasInputSettings.BASELINE;
+		this.__ctx.fillText(this.__textContent, this.__xPosition, this.__yPosition);
 	}
 }

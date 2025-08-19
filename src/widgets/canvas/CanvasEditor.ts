@@ -1,41 +1,41 @@
 import { PenEditor } from "@/feature/canvas-tools";
 import { EraserEditor } from "@/feature/canvas-tools/left-panel/tools/eraser-editor";
 import { TextEditor } from "@/feature/canvas-tools/left-panel/tools/text-editor";
-import SingleEditor from "@/shared/utils/lib/SingleEditor";
 import { IToolsDraw, IToolsStart, IToolsStop } from "@/shared/utils/types";
+import SingleEditor from "@/shared/utils/lib/SingleEditor";
 
 export class CanvasEditor {
-	canvas: HTMLCanvasElement;
-	ctx: CanvasRenderingContext2D | null;
-	currentTool: (IToolsStart | IToolsStop | IToolsDraw) | null;
-	isDrawing: boolean;
+	private __canvas: HTMLCanvasElement;
+	private __ctx: CanvasRenderingContext2D | null;
+	private __currentTool: (IToolsStart | IToolsStop | IToolsDraw) | null;
+	private __isDrawing: boolean;
 
 	constructor(canvas: HTMLCanvasElement) {
-		this.canvas = canvas;
-		this.ctx = canvas.getContext("2d");
-		if (!this.ctx) throw new Error("context error!");
-		this.currentTool = new PenEditor(this.ctx);
-		this.isDrawing = false;
+		this.__canvas = canvas;
+		this.__ctx = this.__canvas.getContext("2d");
+		if (!this.__ctx) throw new Error("context error!");
+		this.__currentTool = new PenEditor(this.__ctx);
+		this.__isDrawing = false;
 	}
 
 	startDraw(e: MouseEvent) {
-		if (!this.ctx) return;
-		if (!(this.currentTool && "startDraw" in this.currentTool)) return;
+		if (!this.__ctx) return;
+		if (!(this.__currentTool && "startDraw" in this.__currentTool)) return;
 
-		this.isDrawing = true;
+		this.__isDrawing = true;
 		const currentToolName = SingleEditor.getInstance().getCurrentTool();
 		let tool: any;
 
 		switch (currentToolName) {
 			case "pen":
-				tool = new PenEditor(this.ctx);
-				this.currentTool?.startDraw(e);
+				tool = new PenEditor(this.__ctx);
+				this.__currentTool?.startDraw(e);
 				break;
 			case "eraser":
-				tool = new EraserEditor(this.ctx);
+				tool = new EraserEditor(this.__ctx);
 				break;
 			case "text":
-				tool = new TextEditor(this.ctx);
+				tool = new TextEditor(this.__ctx);
 				tool.setPosition(e.offsetX, e.offsetY);
 				break;
 			default:
@@ -43,29 +43,29 @@ export class CanvasEditor {
 				return;
 		}
 
-		this.currentTool = tool;
-		if (!(this.currentTool && "startDraw" in this.currentTool)) return;
+		this.__currentTool = tool;
+		if (!(this.__currentTool && "startDraw" in this.__currentTool)) return;
 
-		this.currentTool?.startDraw(e);
+		this.__currentTool?.startDraw(e);
 	}
 
 	stopDraw() {
-		this.isDrawing = false;
+		this.__isDrawing = false;
 
-		if (!this.ctx || !this.currentTool) return;
-		if (!("stopDraw" in this.currentTool)) return;
+		if (!this.__ctx || !this.__currentTool) return;
+		if (!("stopDraw" in this.__currentTool)) return;
 
-		this.currentTool?.stopDraw(this.ctx);
+		this.__currentTool?.stopDraw(this.__ctx);
 	}
 
 	drawLine(e: MouseEvent) {
-		if (!this.isDrawing || !this.currentTool) return;
+		if (!this.__isDrawing || !this.__currentTool) return;
 
-		if ("draw" in this.currentTool) this.currentTool?.draw(e);
+		if ("draw" in this.__currentTool) this.__currentTool?.draw(e);
 	}
 
 	renderText(e: KeyboardEvent) {
-		if (this.currentTool && "draw" in this.currentTool)
-			this.currentTool?.draw(e);
+		if (this.__currentTool && "draw" in this.__currentTool)
+			this.__currentTool?.draw(e);
 	}
 }

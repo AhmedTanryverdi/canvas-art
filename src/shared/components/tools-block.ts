@@ -34,7 +34,7 @@ export class ToolsBlock extends UIComponent {
 			const frame = document.createElement("div");
 			frame.classList.add("frame");
 			frame.append(img);
-			this.container.append(frame);
+			this._container.append(frame);
 		});
 	}
 }

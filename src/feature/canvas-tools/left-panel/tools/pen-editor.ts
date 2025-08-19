@@ -2,23 +2,23 @@ import { CanvasPenSettings } from "@/shared/utils/constants";
 import { IToolsDraw, IToolsStart, IToolsStop } from "@/shared/utils/types";
 
 export class PenEditor implements IToolsStart, IToolsStop, IToolsDraw {
-	private ctx: CanvasRenderingContext2D;
-	thickness: number;
-	color: string;
+	private __ctx: CanvasRenderingContext2D;
+	private __thickness: number;
+	private __color: string;
 	constructor(ctx: CanvasRenderingContext2D) {
-		this.ctx = ctx;
-		this.thickness = CanvasPenSettings.THICKNESS;
-		this.color = CanvasPenSettings.COLOR;
-		this.ctx.lineCap = CanvasPenSettings.LINE_CAP;
-		this.ctx.lineJoin = CanvasPenSettings.LINE_JOIN;
-		this.ctx.strokeStyle = this.color;
-		this.ctx.lineWidth = this.thickness;
+		this.__ctx = ctx;
+		this.__thickness = CanvasPenSettings.THICKNESS;
+		this.__color = CanvasPenSettings.COLOR;
+		this.__ctx.lineCap = CanvasPenSettings.LINE_CAP;
+		this.__ctx.lineJoin = CanvasPenSettings.LINE_JOIN;
+		this.__ctx.strokeStyle = this.__color;
+		this.__ctx.lineWidth = this.__thickness;
 	}
 
 	startDraw(e: MouseEvent) {
-		if (!this.ctx) return;
-		this.ctx.beginPath();
-		this.ctx.moveTo(e.offsetX, e.offsetY);
+		if (!this.__ctx) return;
+		this.__ctx.beginPath();
+		this.__ctx.moveTo(e.offsetX, e.offsetY);
 	}
 
 	stopDraw(ctx: CanvasRenderingContext2D) {
@@ -26,9 +26,9 @@ export class PenEditor implements IToolsStart, IToolsStop, IToolsDraw {
 	}
 
 	draw(e: MouseEvent) {
-		if (!this.ctx) return;
+		if (!this.__ctx) return;
 
-		this.ctx?.lineTo(e.offsetX, e.offsetY);
-		this.ctx?.stroke();
+		this.__ctx?.lineTo(e.offsetX, e.offsetY);
+		this.__ctx?.stroke();
 	}
 }

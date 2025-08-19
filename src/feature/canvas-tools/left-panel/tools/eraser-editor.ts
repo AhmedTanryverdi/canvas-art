@@ -3,10 +3,10 @@ import { IToolsDraw, IToolsStart } from "@/shared/utils/types";
 
 export class EraserEditor implements IToolsStart, IToolsDraw {
 	private __ctx: CanvasRenderingContext2D;
-	private eraserThickness: number;
+	private __eraserThickness: number;
 	constructor(ctx: CanvasRenderingContext2D) {
 		this.__ctx = ctx;
-		this.eraserThickness = ERASER_THICKNESS_DEFAULT;
+		this.__eraserThickness = ERASER_THICKNESS_DEFAULT;
 	}
 
 	startDraw(e: MouseEvent) {
@@ -22,7 +22,7 @@ export class EraserEditor implements IToolsStart, IToolsDraw {
 		this.__ctx.arc(
 			e.offsetX,
 			e.offsetY,
-			this.eraserThickness,
+			this.__eraserThickness,
 			0,
 			Math.PI * 2
 		);

@@ -10,6 +10,6 @@ export class LeftToolsBar extends UIComponent {
 
 	addContent(): void {
 		const toolsBlock = new ToolsBlock("tools-block");
-		this.container.append(toolsBlock.getElement());
+		this._container.append(toolsBlock.getElement());
 	}
 }

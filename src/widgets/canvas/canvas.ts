@@ -3,39 +3,39 @@ import { CanvasEditor } from "./CanvasEditor";
 import { CanvasSize } from "@/shared/utils/constants";
 
 export class Canvas extends UIComponent {
-	drawer: CanvasEditor;
+	private __drawer: CanvasEditor;
 	constructor(id: string, blockType = "canvas") {
 		super(id, blockType);
 
-		if (this.container instanceof HTMLCanvasElement) {
-			this.container.tabIndex = 0;
-			this.container.width = CanvasSize.CANVAS_WIDTH;
-			this.container.height = CanvasSize.CANVAS_HEIGHT;
-			this.drawer = new CanvasEditor(this.container);
-			this.container.focus();
+		if (this._container instanceof HTMLCanvasElement) {
+			this._container.tabIndex = 0;
+			this._container.width = CanvasSize.CANVAS_WIDTH;
+			this._container.height = CanvasSize.CANVAS_HEIGHT;
+			this.__drawer = new CanvasEditor(this._container);
+			this._container.focus();
 			this.addContent();
 		} else throw new Error("can't created context!");
 	}
 
 	addContent(): void {
-		this.container.addEventListener(
+		this._container.addEventListener(
 			"mousedown",
-			this.drawer.startDraw.bind(this.drawer)
+			this.__drawer.startDraw.bind(this.__drawer)
 		);
 
-		this.container.addEventListener(
+		this._container.addEventListener(
 			"mouseup",
-			this.drawer.stopDraw.bind(this.drawer)
+			this.__drawer.stopDraw.bind(this.__drawer)
 		);
 
-		this.container.addEventListener(
+		this._container.addEventListener(
 			"mousemove",
-			this.drawer.drawLine.bind(this.drawer)
+			this.__drawer.drawLine.bind(this.__drawer)
 		);
 
-		this.container.addEventListener(
+		this._container.addEventListener(
 			"keydown",
-			this.drawer.renderText.bind(this.drawer),
+			this.__drawer.renderText.bind(this.__drawer),
 			false
 		);
 	}

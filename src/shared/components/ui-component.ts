@@ -1,17 +1,17 @@
 export default abstract class UIComponent {
-	container: HTMLElement;
+	protected _container: HTMLElement;
 	constructor(id: string, elementType: string) {
-		this.container = document.createElement(elementType);
-		this.container.id = id;
+		this._container = document.createElement(elementType);
+		this._container.id = id;
 	}
 
 	render(parent: string = "#app") {
 		const parentElement = document.querySelector(parent);
-		parentElement?.append(this.container);
+		parentElement?.append(this._container);
 	}
 
 	getElement() {
-		return this.container;
+		return this._container;
 	}
 
 	abstract addContent(): void;
