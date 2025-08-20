@@ -7,7 +7,7 @@ export class CanvasBoard extends Canvas {
 	private __drawer: CanvasEditor | null = null;
 
 	create(): HTMLElement | null {
-		this._container = document.createElement("canvas");
+		this._container = super.create();
 		if (!this._container) return null;
 		this._container.id = "canvas";
 
