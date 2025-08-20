@@ -22,15 +22,6 @@ body {
 	box-shadow: 1px 1px 55px 3px black;
 	display: flex;
 
-	#left-tools-bar,
-	#right-tools-bar {
-		flex: 1 1 auto;
-		height: 100%;
-		background-color: darkcyan;
-		max-width: 150px;
-		width: 100%;
-	}
-
 	#canvas {
 		max-width: 1000px;
 		width: 100%;
