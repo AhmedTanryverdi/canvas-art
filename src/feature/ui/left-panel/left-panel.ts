@@ -14,9 +14,9 @@ export class LeftPanel extends Aside {
 		if (!toolsBar) return null;
 		this._container?.append(toolsBar);
 
-		const thickness = new RangeInput().create();
-		if (!thickness) return null;
-		this._container?.append(thickness);
+		const toolThickness = new RangeInput().create();
+		if (!toolThickness) return null;
+		this._container?.append(toolThickness);
 
 		return this._container;
 	}
