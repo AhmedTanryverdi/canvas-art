@@ -1,7 +1,7 @@
 import "./styles.scss";
-import eraserSvg from "@/shared/icons/eraser.svg";
-import penSvg from "@/shared/icons/pen.svg";
-import textSvg from "@/shared/icons/text.svg";
+import {eraserSvg} from "@/shared/icons";
+import {penSvg} from "@/shared/icons";
+import {textSvg} from "@/shared/icons";
 import { Div } from "@/shared/ui";
 import { TOOLITEMS } from "@/shared/utils/constants";
 import { SingleEditor } from "@/shared/utils/lib";
