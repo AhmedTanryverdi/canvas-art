@@ -1,7 +1,7 @@
 import "./styles.scss";
-import { Aside } from "@/shared/ui/aside/aside";
-import { ToolsBar } from "@/shared/ui/tools-bar/tools-bar";
-import { RangeInput } from "@/shared/ui/range-input/range-input";
+import { Aside } from "@/shared/ui";
+import { ToolsBar } from "@/shared/ui";
+import { RangeInput } from "@/shared/ui";
 
 export class LeftPanel extends Aside {
 	create(): HTMLElement | null {
