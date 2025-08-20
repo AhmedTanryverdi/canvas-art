@@ -1,0 +1,13 @@
+@use "@/shared/scss/utilities.scss" as g;
+
+#left-panel {
+	flex: 1 1 auto;
+	height: 100%;
+	background-color: darkcyan;
+	max-width: 150px;
+	width: 100%;
+	@include g.flex-center(column);
+	justify-content: flex-start;
+	row-gap: 20px;
+	padding-top: 10px;
+}
