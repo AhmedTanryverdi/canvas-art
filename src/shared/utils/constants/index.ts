@@ -1,5 +1,5 @@
 export enum CanvasSize {
-	CANVAS_WIDTH = 1000,
+	CANVAS_WIDTH = 1150,
 	CANVAS_HEIGHT = window.innerHeight * 0.8,
 }
 
@@ -26,4 +26,4 @@ export const ERASER_THICKNESS_DEFAULT = 20;
 
 export const TOOLITEMS = ["eraser", "pen", "text"];
 
-export const BASE_COMPONENTS = ["left-panel", "canvas"];
+export const BASE_COMPONENTS = ["left-panel", "canvas-board"];

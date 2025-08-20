@@ -1,8 +1,8 @@
-import { SingleEditor } from "@/shared/utils/lib/single-editor";
 import { PenEditor } from "@/feature/canvas-tools";
-import { EraserEditor } from "@/feature/canvas-tools/left-panel/tools/eraser-editor";
-import { TextEditor } from "@/feature/canvas-tools/left-panel/tools/text-editor";
+import { EraserEditor } from "@/feature/canvas-tools";
+import { TextEditor } from "@/feature/canvas-tools";
 import { IToolsDraw, IToolsStart, IToolsStop } from "@/shared/utils/types";
+import { SingleEditor } from "@/shared/utils/lib/single-editor";
 
 export class CanvasEditor {
 	private __canvas: HTMLCanvasElement;

@@ -1,3 +1,4 @@
+import "./styles.scss";
 import { CanvasEditor } from "@/feature/canvas-tools";
 import { Canvas } from "@/shared/ui/canvas/canvas";
 import { CanvasSize } from "@/shared/utils/constants";
