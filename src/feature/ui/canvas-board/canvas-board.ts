@@ -25,9 +25,7 @@ export class CanvasBoard extends Canvas {
 			this._container.tabIndex = 0;
 			this._container.width = CanvasSize.CANVAS_WIDTH;
 			this._container.height = CanvasSize.CANVAS_HEIGHT;
-			this.__drawer = new CanvasEditor(this._container);
 			this._container.focus();
-			this.listen();
 		} else throw new Error("can't created context!");
 	}
 
