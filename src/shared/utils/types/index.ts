@@ -1,13 +1,10 @@
-export interface IToolsStart {
-	startDraw(e: MouseEvent): void;
+export interface IDrawing {
+	startDrawing(e: MouseEvent): void;
+	drawing(e: MouseEvent | KeyboardEvent): void;
 }
 
-export interface IToolsStop {
-	stopDraw(ctx: CanvasRenderingContext2D): void;
-}
-
-export interface IToolsDraw {
-	draw(e: MouseEvent | KeyboardEvent): void;
+export interface IContinuousDrawing extends IDrawing {
+	stopDrawing(e: MouseEvent): void;
 }
 
 export interface UI {

@@ -1,7 +1,7 @@
 import { CanvasInputSettings } from "@/shared/utils/constants";
-import { IToolsDraw, IToolsStart } from "@/shared/utils/types";
+import { IDrawing } from "@/shared/utils/types";
 
-export class TextEditor implements IToolsDraw, IToolsStart {
+export class TextEditor implements IDrawing {
 	private __ctx: CanvasRenderingContext2D;
 	private __textContent: string;
 	private __xPosition: number;
@@ -24,11 +24,11 @@ export class TextEditor implements IToolsDraw, IToolsStart {
 		[this.__xPosition, this.__yPosition] = [x, y];
 	}
 
-	startDraw(e: MouseEvent): void {
+	startDrawing(e: MouseEvent): void {
 		this.setPosition(e.offsetX, e.offsetY);
 	}
 
-	draw(event: KeyboardEvent): void {
+	drawing(event: KeyboardEvent): void {
 		if (!this.__ctx || !event.key) return;
 		event.preventDefault();
 

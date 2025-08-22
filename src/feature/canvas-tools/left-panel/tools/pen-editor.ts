@@ -1,7 +1,7 @@
 import { CanvasPenSettings } from "@/shared/utils/constants";
-import { IToolsDraw, IToolsStart, IToolsStop } from "@/shared/utils/types";
+import { IContinuousDrawing } from "@/shared/utils/types";
 
-export class PenEditor implements IToolsStart, IToolsStop, IToolsDraw {
+export class PenEditor implements IContinuousDrawing {
 	private __ctx: CanvasRenderingContext2D;
 	private __color: string;
 	constructor(ctx: CanvasRenderingContext2D) {
@@ -17,19 +17,18 @@ export class PenEditor implements IToolsStart, IToolsStop, IToolsDraw {
 		this.__ctx.lineWidth = parseInt(value);
 	}
 
-	startDraw(e: MouseEvent) {
+	startDrawing(e: MouseEvent) {
 		if (!this.__ctx) return;
 		this.__ctx.beginPath();
 		this.__ctx.moveTo(e.offsetX, e.offsetY);
 	}
 
-	stopDraw(ctx: CanvasRenderingContext2D) {
-		ctx.beginPath();
+	stopDrawing(e: MouseEvent) {
+		this.__ctx.closePath();
 	}
 
-	draw(e: MouseEvent) {
+	drawing(e: MouseEvent) {
 		if (!this.__ctx) return;
-
 		this.__ctx?.lineTo(e.offsetX, e.offsetY);
 		this.__ctx?.stroke();
 	}
